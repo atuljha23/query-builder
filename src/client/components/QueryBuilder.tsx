@@ -1,21 +1,27 @@
-import React from "react";
+import { useState } from "react";
 import { GroupedRules } from "./groupedRules";
-import { Rule } from "./Rule";
+import { RuleGroupType } from "@/types/rules";
 
-export function QueryBuilder(props: any) {
+const initialGroup: RuleGroupType = {
+  combinator: "AND",
+  conditions: [
+    {
+      fieldName: "name",
+      operation: "EQUAL",
+      value: "",
+    },
+  ],
+};
+
+export function QueryBuilder() {
+  const [query, setQuery] = useState<RuleGroupType>(initialGroup);
   return (
     <>
       <div>
         <h1 className="text-6xl">Query Builder</h1>
-        <GroupedRules />
-        <Rule
-          rule={{
-            fieldName: "name",
-            operation: "EQUAL",
-            value: "John Doe",
-          }}
-          onChange={(rule) => console.log(rule)}
-        />
+        <div className="flex-1">
+          <GroupedRules group={query} onChange={setQuery} isRoot={true} />
+        </div>
       </div>
     </>
   );
