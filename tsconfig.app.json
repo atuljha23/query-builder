@@ -8,7 +8,10 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/client/*"]
+    },
     /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,

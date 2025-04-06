@@ -1,5 +1,6 @@
 import axios from "axios";
 import { QueryBuilder } from "./components/QueryBuilder";
+import { ThemeProvider } from "./components/theme-provider";
 
 function App() {
   const handleClick = async () => {
@@ -12,9 +13,11 @@ function App() {
   };
 
   return (
-    <div>
-      <QueryBuilder />
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div>
+        <QueryBuilder />
+      </div>
+    </ThemeProvider>
   );
 }
 
