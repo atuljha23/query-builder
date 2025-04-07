@@ -103,7 +103,7 @@ export function GroupedRules(props: Props) {
 
   return (
     <div className="border rounded bg-white dark:bg-zinc-900 shadow-md">
-      <div className="flex p-1 items-center justify-between bg-gray-600">
+      <div className="flex p-1 items-center justify-between bg-gray-400">
         <h2 className="text-sm font-semibold">Rule Group</h2>
       </div>
       <div className="p-4">
@@ -130,7 +130,7 @@ export function GroupedRules(props: Props) {
             >
               <div className="flex gap-4">
                 {"combinator" in cond ? (
-                  <RuleGroup
+                  <GroupedRules
                     group={cond as RuleGroupType}
                     onChange={(updated) =>
                       handleConditionChange(index, updated)

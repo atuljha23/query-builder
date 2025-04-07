@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Input } from "./ui/input";
 
 interface Props {
   rule: RuleType;
@@ -53,10 +54,12 @@ export function Rule({ rule, onChange }: Props) {
     });
   };
 
-  const handleValueChange = (value: any) => {
+  const handleValueChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string
+  ) => {
     // Amount value is a special case as we need to handle the currency
     let newValue: string | number | AmountValue = 0;
-
+    const value = typeof e === "string" ? e : e.target.value;
     if (rule.fieldName === "amount") {
       const amountValue = (rule.value as AmountValue) || {
         amount: 0,
@@ -95,7 +98,7 @@ export function Rule({ rule, onChange }: Props) {
         };
         return (
           <div className="flex gap-2">
-            <input
+            <Input
               type="number"
               name="amount"
               value={amountValue.amount}
@@ -142,7 +145,7 @@ export function Rule({ rule, onChange }: Props) {
 
       case "installments":
         return (
-          <input
+          <Input
             type="number"
             name="value"
             value={(rule.value as number) || ""}
@@ -154,7 +157,7 @@ export function Rule({ rule, onChange }: Props) {
 
       default:
         return (
-          <input
+          <Input
             name="value"
             value={(rule.value as string) || ""}
             onChange={handleValueChange}
@@ -167,7 +170,6 @@ export function Rule({ rule, onChange }: Props) {
 
   const getAvailableOperations = (): Operation[] => {
     if (!rule.fieldName) return [];
-    console.log("Getting operations for fieldName:", rule.fieldName); // Debugging
     switch (rule.fieldName) {
       case "amount":
       case "installments":
