@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { BackgroundGradient } from "./ui/background-gradient";
 import { CodeBlock } from "./ui/codeblock";
 
+// This is the initial state of the query builder
 const initialGroup: RuleGroupType = {
   combinator: "AND",
   conditions: [
@@ -17,18 +18,23 @@ const initialGroup: RuleGroupType = {
 };
 
 export function QueryBuilder() {
+  // State to manage the query and welcome message
   const [query, setQuery] = useState<RuleGroupType>(initialGroup);
   const [welcomeMessage, setWelcomeMessage] = useState<string>(
     "Build your query using the form below. Once you're done, click Submit to send the query to the server"
   );
+
+  // Environment variables for API and app URLs
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const appUrl = import.meta.env.VITE_APP_BASE_URL;
 
+  // Handler for when the query changes
   const handleQueryChange = (newQuery: RuleGroupType) => {
     setQuery(newQuery);
     setWelcomeMessage("Query updated! Click Submit to send the query.");
   };
 
+  // Handler for when the form is submitted
   const handleSubmit = () => {
     console.log("Submitted query:", query);
     // Here we would typically send the query to our backend

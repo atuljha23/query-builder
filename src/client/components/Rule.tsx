@@ -16,6 +16,8 @@ interface Props {
 }
 
 export function Rule({ rule, onChange }: Props) {
+  // Handle field name change
+  // This function updates the rule with the selected field name and sets a default value
   const handleFieldNameChange = (value: string) => {
     const fieldName = value as FieldName;
     let defaultValue: any = "";
@@ -46,6 +48,9 @@ export function Rule({ rule, onChange }: Props) {
     });
   };
 
+  // Handle operation change
+  // This function updates the rule with the selected operation
+  // and sets a default value
   const handleOperationChange = (value: string) => {
     const operation = value as Operation;
     onChange({
@@ -54,6 +59,12 @@ export function Rule({ rule, onChange }: Props) {
     });
   };
 
+  // Handle value change
+  // This function updates the rule with the new value based on the field name
+  // and the selected operation
+  // It also handles the special case for amount and installments
+  // where the value is an object with amount and currency
+  // or a number respectively
   const handleValueChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string
   ) => {
@@ -87,6 +98,9 @@ export function Rule({ rule, onChange }: Props) {
     });
   };
 
+  // Render the value input based on the field name
+  // This function returns the appropriate input field based on the field name
+  // and the selected operation
   const renderValueInput = () => {
     if (!rule.fieldName) return null;
 
@@ -168,6 +182,9 @@ export function Rule({ rule, onChange }: Props) {
     }
   };
 
+  // Get available operations based on the field name
+  // This function returns the available operations based on the field name
+  // and the selected operation
   const getAvailableOperations = (): Operation[] => {
     if (!rule.fieldName) return [];
     switch (rule.fieldName) {
@@ -219,6 +236,7 @@ export function Rule({ rule, onChange }: Props) {
           ))}
         </SelectContent>
       </Select>
+      // Render the value input based on the field name
       {rule.fieldName && renderValueInput()}
     </div>
   );

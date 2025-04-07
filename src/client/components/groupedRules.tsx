@@ -20,9 +20,12 @@ interface Props {
 }
 
 export function GroupedRules(props: Props) {
+  // Destructure props
   const { group, onChange, isRoot } = props;
+  // Determine if the group is a root group
   const currentConditions = isRoot ? group.conditions : group.subConditions;
 
+  // Handle adding a new rule
   const handleAddRule = () => {
     const newRule: RuleType = {
       fieldName: "name",
@@ -43,12 +46,13 @@ export function GroupedRules(props: Props) {
     }
   };
 
+  // Handle adding a new group
   const handleAddGroup = () => {
     const newGroup: RuleGroupType = {
       combinator: "AND",
       subConditions: [],
     };
-
+    // Add the new group to the appropriate conditions
     if (isRoot) {
       onChange({
         ...group,
@@ -64,6 +68,7 @@ export function GroupedRules(props: Props) {
     }
   };
 
+  // Handle changing the combinator
   const handleCombinatorsChange = (value: string) => {
     const combinator = value as Combinator;
     onChange({
@@ -72,6 +77,7 @@ export function GroupedRules(props: Props) {
     });
   };
 
+  // Handle changing a condition
   const handleConditionChange = (
     index: number,
     updated: RuleType | RuleGroupType
@@ -87,7 +93,10 @@ export function GroupedRules(props: Props) {
     }
   };
 
+  // Handle deleting a condition
   const handleDeleteCondition = (index: number) => {
+    // Check if the group is a root group and based on that filter the conditions
+    // to remove the condition at the specified index
     if (isRoot) {
       const newConditions = (group.conditions || []).filter(
         (_, i) => i !== index
@@ -129,7 +138,7 @@ export function GroupedRules(props: Props) {
               className="p-2 border rounded bg-grey-50 relative flex items-center gap-4"
             >
               <div className="flex gap-4">
-                {"combinator" in cond ? (
+                {"combinator" in cond ? ( // Check if the condition is a group or a rule
                   <GroupedRules
                     group={cond as RuleGroupType}
                     onChange={(updated) =>
