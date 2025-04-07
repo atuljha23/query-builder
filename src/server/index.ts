@@ -2,8 +2,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import fs from "fs";
+import cors from "cors";
 
 const app = express();
+app.use(cors()); // Enable CORS for all routes
 const PORT = 3000;
 
 app.use(bodyParser.json());
@@ -16,7 +18,7 @@ app.post("/api/save-rules", (req, res) => {
     if (err) {
       return res.status(500).send("Failed to save file");
     }
-    res.send("Success");
+    return res.status(200).send("Succcess");
   });
 });
 

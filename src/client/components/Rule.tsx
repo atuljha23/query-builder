@@ -65,7 +65,7 @@ export function Rule({ rule, onChange }: Props) {
         amount: 0,
         currency: "EUR",
       };
-      if (value === "amount") {
+      if (typeof value === "string" && !isNaN(parseFloat(value))) {
         newValue = {
           ...amountValue,
           amount: parseFloat(value) || 0,
