@@ -102,7 +102,7 @@ export function GroupedRules(props: Props) {
   };
 
   return (
-    <div className="border rounded bg-white dark:bg-zinc-900 shadow-md">
+    <div className="border rounded bg-slate-800 dark:bg-zinc-900 shadow-md">
       <div className="flex p-1 items-center justify-between bg-gray-400">
         <h2 className="text-sm font-semibold">Rule Group</h2>
       </div>

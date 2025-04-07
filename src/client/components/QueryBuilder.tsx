@@ -34,7 +34,9 @@ export function QueryBuilder() {
   }, [query]);
   return (
     <div className="relative shadow-md w-full items-center justify-center gap-4 p-4">
-      <h1 className="text-4xl flex font-bold justify-center">Query Builder</h1>
+      <h1 className="text-4xl flex text-red-400 dark:text-blue-100 font-bold justify-center">
+        Query Builder
+      </h1>
       <BackgroundGradient className="rounded-3xl p-6 flex-1 bg-white dark:bg-zinc-900 shadow-md">
         <div className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-lg p-4 shadow-sm">
           <div className="flex flex-row gap-4 w-full">
