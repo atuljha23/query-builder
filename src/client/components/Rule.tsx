@@ -236,7 +236,7 @@ export function Rule({ rule, onChange }: Props) {
           ))}
         </SelectContent>
       </Select>
-      // Render the value input based on the field name
+      {/* Render the value input based on the field name */}
       {rule.fieldName && renderValueInput()}
     </div>
   );
