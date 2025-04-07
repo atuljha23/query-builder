@@ -50,7 +50,13 @@ export function GroupedRules(props: Props) {
   const handleAddGroup = () => {
     const newGroup: RuleGroupType = {
       combinator: "AND",
-      subConditions: [],
+      subConditions: [
+        {
+          fieldName: "name",
+          operation: "EQUAL",
+          value: "",
+        },
+      ],
     };
     // Add the new group to the appropriate conditions
     if (isRoot) {

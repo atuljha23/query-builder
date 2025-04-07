@@ -43,7 +43,7 @@ export function Rule({ rule, onChange }: Props) {
     onChange({
       ...rule,
       fieldName,
-      operation: "",
+      operation: "EQUAL",
       value: defaultValue,
     });
   };
