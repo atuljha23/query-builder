@@ -158,6 +158,7 @@ export function GroupedRules(props: Props) {
                   disabled={currentConditions.length <= 1}
                   onClick={() => handleDeleteCondition(index)}
                   variant="destructive"
+                  className="px-12 py-4 rounded"
                   title="Delete"
                 >
                   <FaMinus />

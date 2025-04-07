@@ -20,6 +20,7 @@ const initialGroup: RuleGroupType = {
 export function QueryBuilder() {
   // State to manage the query and welcome message
   const [query, setQuery] = useState<RuleGroupType>(initialGroup);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
   const [welcomeMessage, setWelcomeMessage] = useState<string>(
     "Build your query using the form below. Once you're done, click Submit to send the query to the server"
   );
@@ -32,6 +33,7 @@ export function QueryBuilder() {
   const handleQueryChange = (newQuery: RuleGroupType) => {
     setQuery(newQuery);
     setWelcomeMessage("Query updated! Click Submit to send the query.");
+    setSubmitDisabled(false);
   };
 
   // Handler for when the form is submitted
@@ -69,17 +71,19 @@ export function QueryBuilder() {
   // }, [query]); // For debugging purposes
 
   return (
-    <div className="relative shadow-md w-full items-center justify-center gap-4 p-4">
-      <h1 className="text-4xl flex text-red-400 dark:text-blue-100 font-bold justify-center m-4">
-        Query Builder
-      </h1>
-      <p className="text-gray-500 dark:text-gray-300 text-center m-4">
-        {welcomeMessage}
-      </p>
-      <BackgroundGradient className="rounded-3xl p-6 flex-1 bg-white dark:bg-zinc-900 shadow-md max-h-screen overflow-auto">
-        <div className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-lg p-4 shadow-sm">
+    <div className="flex flex-col shadow-md w-full items-center justify-center gap-4 p-4">
+      <div>
+        <h1 className="text-4xl flex text-red-400 dark:text-blue-100 font-bold justify-center mb-4">
+          Query Builder
+        </h1>
+        <p className="text-gray-500 dark:text-gray-300 text-center m-4">
+          {welcomeMessage}
+        </p>
+      </div>
+      <BackgroundGradient className="rounded-3xl pl-6 pt-6 pr-6 flex-1 bg-white dark:bg-zinc-900 shadow-md w-full mx-auto">
+        <div className="max-h-[calc(100vh-18rem)] overflow-y-auto rounded-lg p-4 shadow-sm">
           <div className="flex flex-row gap-4 w-full">
-            <div className="flex-1">
+            <div className="">
               <GroupedRules
                 group={query}
                 onChange={handleQueryChange}
@@ -97,15 +101,16 @@ export function QueryBuilder() {
               />
             </div>
           </div>
-          <Button
-            variant="default"
-            onClick={handleSubmit}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
-          >
-            Submit
-          </Button>
         </div>
       </BackgroundGradient>
+      <Button
+        variant="default"
+        onClick={handleSubmit}
+        disabled={submitDisabled}
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4 w-full"
+      >
+        Submit
+      </Button>
     </div>
   );
 }

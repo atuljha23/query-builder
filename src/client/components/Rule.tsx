@@ -124,7 +124,7 @@ export function Rule({ rule, onChange }: Props) {
               onValueChange={handleValueChange}
               defaultValue={amountValue.currency}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="rounded">
                 <SelectValue placeholder="Select Currency" />
               </SelectTrigger>
               <SelectContent>
@@ -144,7 +144,7 @@ export function Rule({ rule, onChange }: Props) {
             defaultValue={(rule.value as string) || ""}
             onValueChange={handleValueChange}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="rounded">
               <SelectValue placeholder="Select Value" />
             </SelectTrigger>
             <SelectContent>
@@ -202,7 +202,7 @@ export function Rule({ rule, onChange }: Props) {
         defaultValue={rule.fieldName || ""}
         onValueChange={handleFieldNameChange}
       >
-        <SelectTrigger>
+        <SelectTrigger className="rounded">
           <SelectValue placeholder="Select Field" />
         </SelectTrigger>
         <SelectContent>
@@ -225,7 +225,7 @@ export function Rule({ rule, onChange }: Props) {
         onValueChange={handleOperationChange}
         disabled={!rule.fieldName}
       >
-        <SelectTrigger>
+        <SelectTrigger className="rounded">
           <SelectValue placeholder="Select Operation" />
         </SelectTrigger>
         <SelectContent>
