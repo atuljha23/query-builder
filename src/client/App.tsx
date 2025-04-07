@@ -1,5 +1,6 @@
 import { QueryBuilder } from "./components/QueryBuilder";
 import { ThemeProvider } from "./components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div>
         <QueryBuilder />
       </div>
+      <Toaster />
     </ThemeProvider>
   );
 }
